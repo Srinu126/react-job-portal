@@ -7,8 +7,9 @@ import JobPage from "./pages/job";
 import PostJob from "./pages/post-job";
 import SavedJobs from "./pages/saved-jobs";
 import MyJobs from "./pages/my-jobs";
-import './App.css';
+import "./App.css";
 import { ThemeProvider } from "./components/ui/theme-provider";
+import ProtectedRoutes from "./components/protected-routes";
 
 const router = createBrowserRouter([
   {
@@ -21,27 +22,51 @@ const router = createBrowserRouter([
       },
       {
         path: "/onboarding",
-        element: <OnBoarding />,
+        element: (
+          <ProtectedRoutes>
+            <OnBoarding />
+          </ProtectedRoutes>
+        ),
       },
       {
         path: "/jobs",
-        element: <JobListing />,
+        element: (
+          <ProtectedRoutes>
+            <JobListing />
+          </ProtectedRoutes>
+        ),
       },
       {
         path: "/job/:id",
-        element: <JobPage />,
+        element: (
+          <ProtectedRoutes>
+            <JobPage />
+          </ProtectedRoutes>
+        ),
       },
       {
         path: "/post-job",
-        element: <PostJob />,
+        element: (
+          <ProtectedRoutes>
+            <PostJob />
+          </ProtectedRoutes>
+        ),
       },
       {
         path: "/saved-jobs",
-        element: <SavedJobs />,
+        element: (
+          <ProtectedRoutes>
+            <SavedJobs />
+          </ProtectedRoutes>
+        ),
       },
       {
         path: "/my-jobs",
-        element: <MyJobs />,
+        element: (
+          <ProtectedRoutes>
+            <MyJobs />
+          </ProtectedRoutes>
+        ),
       },
     ],
   },
@@ -50,9 +75,9 @@ const router = createBrowserRouter([
 function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-       <RouterProvider router={router}></RouterProvider>
-    </ThemeProvider>)
-  
+      <RouterProvider router={router}></RouterProvider>
+    </ThemeProvider>
+  );
 }
 
 export default App;
